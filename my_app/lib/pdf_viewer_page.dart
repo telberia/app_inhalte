@@ -21,7 +21,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   }
 
   void _initPdf() {
-    developer.log('Attempting to load PDF from assets: ${widget.pdfUrl}');
+    developer.log('Versuche, PDF aus Assets zu laden: ${widget.pdfUrl}');
     _pdfController = PdfControllerPinch(
       document: PdfDocument.openAsset(widget.pdfUrl),
     );
@@ -37,7 +37,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Xem PDF'),
+        title: const Text('PDF ansehen'),
       ),
       body: Stack(
         children: [
@@ -51,7 +51,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Lỗi: $_errorMessage\nĐường dẫn: ${widget.pdfUrl}',
+                      'Fehler: $_errorMessage\nPfad: ${widget.pdfUrl}',
                       style: const TextStyle(color: Colors.red),
                     ),
                   ),
@@ -62,7 +62,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
             child: PdfViewPinch(
               controller: _pdfController,
               onDocumentError: (error) {
-                developer.log('PDF load failed: $error', error: error);
+                developer.log('PDF-Ladevorgang fehlgeschlagen: $error', error: error);
                 setState(() {
                   _errorMessage = error.toString();
                 });

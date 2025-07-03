@@ -1,37 +1,6 @@
 import 'package:flutter/material.dart';
-import 'lesson.dart';
-import 'lesson_detail_page.dart';
-
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'pages/auth_gate.dart';
-
-const supabaseUrl = 'https://zpesmuktowfvcmhfzruw.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZXNtdWtvd2Z2Y21oZnpydXciLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc1MTUzMjg2MywiZXhwIjoyMDY3MTA4ODYzfQ.CHKMHnLtrEjclIXHNk34NyEd4GPsYkL6rSBSWEdVqpg';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(
-    url: supabaseUrl,
-    anonKey: supabaseAnonKey,
-  );
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Course App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        fontFamily: 'NotoSans',
-      ),
-      home: const AuthGate(),
-    );
-  }
-}
+import '../lesson.dart';
+import '../lesson_detail_page.dart';
 
 class LessonListPage extends StatelessWidget {
   const LessonListPage({super.key});
@@ -87,4 +56,4 @@ class LessonListPage extends StatelessWidget {
       ),
     );
   }
-}
+} 
