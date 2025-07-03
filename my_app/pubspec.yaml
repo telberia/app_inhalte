@@ -40,6 +40,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^30.1.38
   flutter_cached_pdfview: ^0.4.2
   pdfx: ^2.9.2
+  supabase_flutter: ^2.9.1
 
 dev_dependencies:
   flutter_test:
@@ -94,14 +95,9 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
   assets:
-    - assets/
-    - assets/App/
-    - assets/App/Lektion_1/
-    - assets/App/Lektion_2/
-    - assets/App/Lektion_1/vt1_eBook_Lektion_1.pdf
-    - assets/App/Lektion_2/vt1_eBook_Lektion_2.pdf
-    - assets/App/Lektion_1/Hörtexte/
-    - assets/App/Lektion_1/Tabellen/
-    - assets/App/Lektion_1/Übungsaudios/
-    - assets/App/Lektion_2/Hörtexte/
+    - assets/App/ 

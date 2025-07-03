@@ -35,7 +35,7 @@ class _LessonDetailPageState extends State<LessonDetailPage> {
             const SizedBox(height: 24),
             ElevatedButton.icon(
               icon: const Icon(Icons.picture_as_pdf),
-              label: const Text('Xem PDF'),
+              label: const Text('PDF ansehen'),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -60,7 +60,7 @@ class _LessonDetailPageState extends State<LessonDetailPage> {
             const SizedBox(height: 16),
             ElevatedButton.icon(
               icon: const Icon(Icons.ondemand_video),
-              label: const Text('Phát video'),
+              label: const Text('Video abspielen'),
               onPressed: () {
                 // TODO: Phát video
               },

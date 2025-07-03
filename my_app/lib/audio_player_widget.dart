@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:developer' as developer;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AudioPlayerWidget extends StatefulWidget {
   final String audioUrl;
@@ -55,12 +56,16 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
 
   Future<void> _play() async {
     try {
-      await _audioPlayer.play(AssetSource(widget.audioUrl.replaceFirst('assets/', '')));
-      developer.log('Playing audio from: ${widget.audioUrl}');
+      if (kIsWeb) {
+        await _audioPlayer.play(UrlSource('/assets/${widget.audioUrl}'));
+      } else {
+        await _audioPlayer.play(AssetSource(widget.audioUrl));
+      }
+      developer.log('Audio wird abgespielt von: \\${widget.audioUrl}');
     } catch (e) {
-      developer.log('Error playing audio: $e');
+      developer.log('Fehler beim Abspielen der Audiodatei: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Không thể phát audio: $e')),
+        SnackBar(content: Text('Audio kann nicht abgespielt werden: $e')),
       );
     }
   }
