@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../lesson.dart';
 import '../lesson_detail_page.dart';
+import 'login_page.dart';
 
 class LessonListPage extends StatelessWidget {
-  const LessonListPage({super.key});
+  final Map<String, dynamic>? userData;
+  const LessonListPage({super.key, this.userData});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,40 @@ class LessonListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lektionsliste'),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.account_circle),
+            onSelected: (value) async {
+              if (value == 'info') {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Benutzerinfo'),
+                    content: Text(userData != null
+                        ? 'Name: ${userData!['full_name'] ?? ''}\nEmail: ${userData!['email'] ?? ''}\nTelefon: ${userData!['phone'] ?? ''}'
+                        : 'Keine Benutzerdaten'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Schließen'),
+                      ),
+                    ],
+                  ),
+                );
+              } else if (value == 'logout') {
+                
+                // await Supabase.instance.client.auth.signOut();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              }
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(value: 'info', child: Text('Benutzerinfo')),
+              const PopupMenuItem(value: 'logout', child: Text('Abmelden')),
+            ],
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: lessons.length,
