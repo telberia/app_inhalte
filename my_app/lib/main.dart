@@ -6,7 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'pages/auth_gate.dart';
 
 const supabaseUrl = 'https://zpesmuktowfvcmhfzruw.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZXNtdWtvd2Z2Y21oZnpydXciLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc1MTUzMjg2MywiZXhwIjoyMDY3MTA4ODYzfQ.CHKMHnLtrEjclIXHNk34NyEd4GPsYkL6rSBSWEdVqpg';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwZXNtdWt0b3dmdmNtaGZ6cnV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE1MzI4NjMsImV4cCI6MjA2NzEwODg2M30.CHKMHnLtrEjclIXHNk34NyEd4GPsYkL6rSBSWEdVqpg';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

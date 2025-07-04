@@ -20,17 +20,20 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> _register() async {
     setState(() => isLoading = true);
     try {
-      final res = await supabase.auth.signUp(
+      final response = await supabase.auth.signUp(
         email: emailController.text.trim(),
         password: passwordController.text,
-        data: {
+      );
+      if (response.user != null) {
+        // Lưu thông tin bổ sung vào bảng users
+        await supabase.from('users').insert({
+          'id': response.user!.id,
+          'email': emailController.text.trim(),
           'full_name': fullNameController.text.trim(),
           'phone': phoneController.text.trim(),
-        },
-      );
-      print('Supabase signUp response: $res');
-      setState(() => isLoading = false);
-      if (res.user != null) {
+          'created_at': DateTime.now().toIso8601String(),
+        });
+        setState(() => isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Registrierung erfolgreich! Bitte melden Sie sich an.')),
         );
@@ -38,6 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
           MaterialPageRoute(builder: (_) => const LoginPage()),
         );
       } else {
+        setState(() => isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Registrierung fehlgeschlagen')),
         );
