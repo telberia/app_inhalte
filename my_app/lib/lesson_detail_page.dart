@@ -18,54 +18,56 @@ class _LessonDetailPageState extends State<LessonDetailPage> {
       appBar: AppBar(
         title: Text(widget.lesson.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.lesson.title,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              widget.lesson.description,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.picture_as_pdf),
-              label: const Text('PDF ansehen'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PdfViewerPage(pdfUrl: widget.lesson.pdfUrl),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.lesson.title,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                widget.lesson.description,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.picture_as_pdf),
+                label: const Text('PDF ansehen'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PdfViewerPage(pdfUrl: widget.lesson.pdfUrl),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              if (widget.lesson.audioUrls.isNotEmpty)
+                ...widget.lesson.audioUrls.map((audio) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Audio: ${audio.split('/').last}'),
+                      AudioPlayerWidget(audioUrl: audio),
+                    ],
                   ),
-                );
-              },
-            ),
-            const SizedBox(height: 16),
-            if (widget.lesson.audioUrls.isNotEmpty)
-              ...widget.lesson.audioUrls.map((audio) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Audio: ${audio.split('/').last}'),
-                    AudioPlayerWidget(audioUrl: audio),
-                  ],
-                ),
-              )),
-            const SizedBox(height: 16),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.ondemand_video),
-              label: const Text('Video abspielen'),
-              onPressed: () {
-                // TODO: Phát video
-              },
-            ),
-          ],
+                )),
+              const SizedBox(height: 16),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.ondemand_video),
+                label: const Text('Video abspielen'),
+                onPressed: () {
+                  // TODO: Phát video
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
