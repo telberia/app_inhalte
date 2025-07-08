@@ -15,7 +15,7 @@ class LessonListPage extends StatelessWidget {
         description: 'Einführung in grundlegendes Deutsch.',
         pdfUrl: 'assets/App/Lektion_1/vt1_eBook_Lektion_1.pdf',
         audioUrls: [
-          'assets/App/Lektion_1/Audio_E1_1.mp3',
+          'App/Lektion_1/Audio_E1_1.mp3',
           'assets/App/Lektion_1/Tab 1_1 - Grußformeln und Befinden - informell.mp3',
           'assets/App/Lektion_1/Tab 1_2 - Grußformeln und Befinden - formell.mp3',
           'assets/App/Lektion_1/Tab 1_3 - Vorstellung - informell.mp3',
