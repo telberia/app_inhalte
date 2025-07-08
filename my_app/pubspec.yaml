@@ -100,4 +100,4 @@ flutter:
       fonts:
         - asset: assets/fonts/NotoSans-Regular.ttf
   assets:
-    - assets/App/ 
+    - assets/
